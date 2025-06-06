@@ -62,6 +62,7 @@ export const checkAuth = (req,res) => {
 // Controller to update user profile details 
 export const updateProfile = async (req,res) => {
     try {
+        console.log("updated profile hit");
         const { profilePic, bio, fullName } = req.body;
         
         const userId = req.user._id;

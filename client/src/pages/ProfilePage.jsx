@@ -1,16 +1,33 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import assets from '../assets/assets';
+import { AuthContext } from '../../context/AuthContext';
+
 const ProfilePage = () => {
+
+  const {authUser, updateProfile} = useContext(AuthContext) 
 
   const [selectedImg,setSelectedImg] = useState(null)
   const navigate = useNavigate();
-  const [name, setName] = useState("Martin Johnson")
-  const [bio, setBio] = useState("Hi Everyone, I am Using QuickChat ") 
+  const [name, setName] = useState(authUser.fullName)
+  const [bio, setBio] = useState(authUser.bio) 
   
   const handleSubmit = async(e) =>{
     e.preventDefault();
-    navigate('/')
+    if(!selectedImg){
+      await updateProfile({fullName: name, bio});
+      navigate('/');
+      return
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedImg);
+    reader.onload = async ()=>{
+      const base64Image = reader.result;
+      await updateProfile({profilePic: base64Image, fullName: name, bio})
+      navigate('/');
+    }
+    
   }
 
   return (
@@ -25,11 +42,11 @@ const ProfilePage = () => {
             className={`w-12 h-12 ${selectedImg && 'rounded-full'}`} />
             upload profile image
           </label>
-          <input onChange={(e)=>setName(e.target.value(name))} value={name} 
+          <input onChange={(e)=>setName(e.target.value)} value={name} 
           type="text" required placeholder='Your name' className='p-2 border
           border-gray-500 rounded-md focus:outline-none focus:ring-2 
           focus:ring-violet-500' />
-          <textarea onChange={(e)=>setBio(e.target.value(bio))} value={bio} 
+          <textarea onChange={(e)=>setBio(e.target.value)} value={bio} 
           placeholder='Write profile bio' required className='p-2 border
           border-gray-500 rounded-md focus:outline-none focus:ring-2 
           focus:ring-violet-500' rows={4}></textarea>
@@ -37,8 +54,8 @@ const ProfilePage = () => {
             Save
           </button>
         </form>
-        <img className='max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10' 
-        src={assets.logo_icon} alt="" />
+        <img className={`max-w-44 aspect-square rounded-full mx-10 max-sm:mt-10 ${selectedImg && 'rounded-full'}`} 
+        src={authUser?.profilePic ||assets.logo_icon} alt="" />
       </div>
     </div>
   )
