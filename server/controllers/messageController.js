@@ -29,7 +29,7 @@ export const getUsersForSidebar = async (req,res) => {
 export const getMessages = async (req,res) => {
     try {
         const { id: selectedUserId } = req.params;//Destructuring: is same as "const selectedUserId = req.params.id";
-        const myId = req.user._Id;
+        const myId = req.user._id;
 
         const messages = await Message.find({
             $or: [
