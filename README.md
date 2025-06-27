@@ -1,6 +1,6 @@
-# 💬 QuickChat - Real-Time MERN Chat Application
+# 💬 ChitChat - Real-Time MERN Chat Application
 
-QuickChat is a real-time chat application built using the **MERN Stack** (MongoDB, Express.js, React, Node.js) with **Socket.IO** for real-time communication. It features user authentication, profile management, and private one-to-one messaging.
+ChitChat is a real-time chat application built using the **MERN Stack** (MongoDB, Express.js, React, Node.js) with **Socket.IO** for real-time communication. It features user authentication, profile management, and private one-to-one messaging.
 
 ---
 
@@ -44,12 +44,12 @@ QuickChat is a real-time chat application built using the **MERN Stack** (MongoD
 
 ## ✨ Features
 
-- 🔒 User registration & login with JWT
-- 🧑 Profile page with profile picture support
-- 🧵 One-on-one real-time chat
-- 💾 MongoDB storage for chat history
-- 🔄 Persistent sessions and secure routes
-- ☁️ Profile image upload using Cloudinary
-- ⚡ Socket.IO for real-time messaging
+-  User registration & login with JWT
+-  Profile page with profile picture support
+-  One-on-one real-time chat
+-  MongoDB storage for chat history
+-  Persistent sessions and secure routes
+-  Profile image upload using Cloudinary
+-  Socket.IO for real-time messaging
 
 ---
