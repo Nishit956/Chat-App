@@ -44,7 +44,7 @@ const RightSidebar = () => {
       </div>
 
       <button onClick={()=> logout()} className='absolute bottom-5 left-1/2 transform -translate-x-1/2 
-      bg-gradient-to-r from-purple-400 to-violet-600 text-white border-none 
+      bg-gradient-to-r from-cyan-400 to-cyan-600 text-white border-none 
       text-sm font-light py-2 px-10 rounded-full cursor-pointer'>
         Logout
       </button>
